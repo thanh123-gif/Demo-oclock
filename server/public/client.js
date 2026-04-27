@@ -34,13 +34,13 @@ setInterval(updateClockUI, 1000);
 // Connect WebSocket
 function connect() {
   ws = new WebSocket(WS_URL);
-
+  
   ws.onopen = () => {
     $status.textContent = "Connected";
     $status.className = "text-lg mt-2 text-emerald-700";
     log("WebSocket connected: " + WS_URL);
   };
-
+  
   ws.onmessage = (evt) => {
     try {
       const data = JSON.parse(evt.data);
@@ -57,7 +57,7 @@ function connect() {
               data.serverTime
             ).toLocaleTimeString()})`
           );
-          break;
+          break; 
 
         case "REQUEST_TIME":
           // Server yêu cầu client gửi thời gian
@@ -72,8 +72,8 @@ function connect() {
           offset += data.adjust;
 
           $serverTime.textContent = new Date(
-            data.serverNewTime
-          ).toLocaleTimeString();
+            data.serverNewTime 
+          ).toLocaleTimeString(); 
           $lastSync.textContent = new Date().toLocaleString();
 
           log(`ADJUST_TIME received: ${data.adjust} ms`);
